@@ -161,6 +161,9 @@ def product_object_add(request):
         verification_code = request.POST.get('verification_code', '')  # product_uuid
         product_uuid = request.POST.get('product_uuid', '')  # product_uuid
         obj_uuid = FileOperation.produce_file_uuid(product_uuid, 'product')
+        print(pictures_show_file, 2222)
+        print(more_pictures_file, 4345)
+        print(pdf_pictures_file, 1123123)
         pdf_uuid = obj_uuid['pdf_uuid']  # pdf文件说明书
         user_id = team = 1  #
         """
@@ -314,7 +317,7 @@ def product_object_delete(request):
 def file_updates(request):  # 小程序使用
     if request.method == "POST":
         last_updateTime = datetime.datetime.now()
-        file_object = request.FILES.get('file')  # 图片文件
+        file_object = request.FILES.getlist('file')  # 图片文件
         object_id = request.POST.get('product_uuid', "")  # 所属uuid
         filepath_type = request.POST.get('filepath_type')  # ('as', 'op', 'oi', 'of', "cd", "iv")...
         filepath_uuid = object_id + filepath_type
@@ -325,12 +328,15 @@ def file_updates(request):  # 小程序使用
         for i in chinese_and_code:
             if i[0] == filepath_type:
                 ft = filepath_type
-        fid = FileOperation.file_update_function_procedure(
-            file_object=file_object,
-            filepath_uuid=filepath_uuid,
-            ft_id=ft,
-            user_id=username, object_id=object_id, team=team, file_id=file_id, last_updateTime=last_updateTime)
-        if not fid:
+        # print(len(file_object), 66666)
+        if len(file_object) < 9:
+            for i in file_object:
+                fid = FileOperation.file_update_function_procedure(
+                    file_object=i,
+                    filepath_uuid=filepath_uuid,
+                    ft_id=ft,
+                    user_id=username, object_id=object_id, team=team, file_id=file_id, last_updateTime=last_updateTime)
+        else:
             # 传输文件大于9
             result = ErrorDataFormat(
                 chMessage=sys_code["410012"]).result()
