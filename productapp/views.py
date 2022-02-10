@@ -1,5 +1,6 @@
 import datetime
 import json
+print(123)
 
 from django.shortcuts import render
 from .models import Product
