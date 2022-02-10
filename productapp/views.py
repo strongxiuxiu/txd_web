@@ -1,5 +1,6 @@
 import datetime
 import json
+print(123)
 
 from django.shortcuts import render
 from .models import Product
@@ -323,6 +324,10 @@ def file_updates(request):  # 小程序使用
         filepath_uuid = object_id + filepath_type
         print(request.POST, 44444)
         print(request.FILES, 6666)
+
+        print(132123123123123123123)
+        print(123123123)
+
         username = file_id = team = 1
         ft = ''
         for i in chinese_and_code:
