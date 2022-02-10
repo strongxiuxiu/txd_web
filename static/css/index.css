@@ -1,0 +1,53 @@
+.am-fl{
+    /* width: 240px; */
+}
+.spanimg{
+  
+}
+.textspan{
+  font-weight: bold;
+}
+.am-fl>span{
+  line-height: 57px;
+  text-align: center;
+  margin-left: 10px;
+  /* display: inline-block; */
+  float: left;
+}
+.layui-nav .layui-nav-item a{
+  color:black;
+}
+.admin-logo-box>span{
+   line-height: 55px;
+    text-align: center;
+    margin-left: 10px;
+    float: left;
+
+}
+.larry-side-menu{
+  color:rgba(0, 0, 0, 0.5);
+  border-left: 1px solid #ccc;
+  margin-left: 23px;
+  
+}
+.layui-layout-admin .header {
+
+  border-bottom: 1px solid #ccc;
+  color: #001529;
+}
+.layui-nav-child>a:hover{
+  color: black;
+}
+.leftnav{
+  left: 5px;
+  /* border-radius: 5px; */
+  background: #fff;
+  /* border: 1px solid #ccc; */
+  position: absolute;
+}
+.case_click,.casex_click,.file_click{
+  cursor: pointer;
+}
+.am-btn {
+  padding: 1px 5px;
+}

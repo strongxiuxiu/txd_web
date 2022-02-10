@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>添加商品</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="/static/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css">
+    <link rel="stylesheet" href="/static/css/x-admin.css" media="all">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/public.css">  
+    <link rel="stylesheet" href="/static/css/mylaws.css">
+    <link rel="stylesheet" href="/static/css/entering.css">
+    <link rel="stylesheet" href="/static/css/new.css">
+    <link rel="stylesheet" href="/static/css/upload.css">
+    <link rel="stylesheet" href="/static/css/preview.css">
+    <link rel="stylesheet" href="/static/css/add_product.css">
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+
+</head>
+<style>
+      .content_img {
+                width: 640px;
+                padding: 20px;
+                /* margin: 20px 0; */
+                border: 1px solid #DDDDDD;
+            }
+            
+            .content_img img {
+                width: 100px;
+                height: 100px;
+            }
+</style>
+
+<body data-type="widgets">
+    <!-- <script src="assets/js/theme.js"></script> -->
+    
+    <div class="am-g tpl-g">
+        {% include 'hash.html' %}
+        <!-- 内容区域 -->
+        <div class="tpl-content-wrapper">
+
+                <div class="container-fluid am-cf">
+                    <div class="row">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                            <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span><small></small></div>
+                            <p class="page-header-description"></p>
+                            <button type="button" style="display:none;" class="am-btn am-btn-default am-btn-success object_uuid"><span class="am-icon-plus object_uuidtetx">{{ product_uuid }}</span> </button>
+
+                        </div>
+                        <div class="am-u-lg-3 tpl-index-settings-button">
+                        
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row-content am-cf">
+                    <div class="row">
+
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title am-fl">添加商品信息</div>
+                                </div>
+                                <div class="widget-body am-fr">
+                                    <form class="am-form tpl-form-border-form tpl-form-border-br">
+                                        <div class="am-form-group  add_items">
+                                            <label for="user-name" class="am-u-sm-3 am-form-label">商品编号 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <input type="text" class="tpl-form-input product_number" id="user-name" placeholder="请输入标题文字">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group  add_items">
+                                            <label for="user-name" class="am-u-sm-3 am-form-label">商品名称 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <input type="text" class="tpl-form-input product_name" id="user-name" placeholder="请输入标题文字">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group  add_items">
+                                            <label for="user-name" class="am-u-sm-3 am-form-label">商品地址 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <input type="text" class="tpl-form-input product_address" id="user-name" placeholder="请输入商品地址">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-phone" class="am-u-sm-3 am-form-label">商品类型 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9 select_position">
+                                                <select  class="product_type">
+                                                    <option value="0">请选择</option>
+                                                    <option value="1">VPX系统</option>
+                                                    <option value="2">解决方案</option>
+                                                </select>
+                                                <div class="down_div">
+                                                    <img src="/static/img/select_down.png" alt="">
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-phone" class="am-u-sm-3 am-form-label">商品状态 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9 select_position">
+                                                <select class="product_state">
+                                                    <option value="0">请选择</option>
+                                                    <option value="1">在售</option>
+                                                    <option value="2">下架</option>
+                                                    <option value="3">已停产</option>
+                                                </select>
+                                                <div class="down_div">
+                                                    <img src="/static/img/select_down.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-phone" class="am-u-sm-3 am-form-label">商品周期 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9 select_position">
+                                                <select  class="production_cycle">
+                                                    <option value="0">请选择</option>
+                                                    <option value="1">10天交付</option>
+                                                    <option value="2">30天交付</option>
+                                                    <option value="3">40天交付</option>
+                                                    <option value="4">60天交付</option>
+                                                    <option value="5">90天交付</option>
+                                                    <option value="6">半年以上</option>
+
+                                                </select>
+                                                <div class="down_div">
+                                                    <img src="/static/img/select_down.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group  add_items">
+                                            <label for="user-name" class="am-u-sm-3 am-form-label">商品负责人 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <input type="text" class="tpl-form-input product_owner" id="user-name" placeholder="请输入商品负责人">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-intro" class="am-u-sm-3 am-form-label">商品内容<span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <textarea class="product_body" rows="6" id="user-intro" placeholder="请输入商品内容"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-intro" class="am-u-sm-3 am-form-label">商品描述<span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <textarea class="product_describe" rows="6" id="user-intro" placeholder="请输入商品描述"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-name" class="am-u-sm-3 am-form-label">百度网盘地址 <span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-4">
+                                                <input type="text"  style="height: 50px;" class="tpl-form-input Baidu_web_disk_address" id="user-name" placeholder="网盘地址">
+                                            </div>
+                                            <div class="am-u-sm-5">
+                                                <input type="text"  style="width:27%; height: 50px;" class="tpl-form-input verification_code" id="user-name" placeholder="请输入网盘提取码">
+                                            </div>
+                                            <!-- <label for="user-name" class="am-u-sm-3 am-form-label">网盘提取码 <span class="tpl-form-line-small-title">*</span></label> -->
+                                        </div>
+                                        <div class="am-form-group">
+                                            <div class="am-u-sm-4 am-u-sm-push-3">
+                                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success update_product">保存</button>
+                                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success Update_show">上传商品介绍</button>
+                                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success update_more">上传详细信息图片</button>
+
+                                            </div>
+                                            <!-- <div class="am-u-sm-4 am-u-sm-push-3">
+                                               
+                                            </div>
+                                            <div class="am-u-sm-4 am-u-sm-push-3">
+                                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success update_more">上传详细信息图片</button>
+                                            </div> -->
+
+                                          
+                                        </div>
+                                    </form>
+                                    <form class="am-form tpl-form-border-form tpl-form-border-br">
+                                       
+                                        <div class="am-form-group add_items">
+                                            <label for="user-intro" class="am-u-sm-3 am-form-label">商品介绍图片<span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <div class="content_img">
+                                                    <div class="show_imgs zoomImgBox"></div>
+
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group add_items">
+                                            <label for="user-intro" class="am-u-sm-3 am-form-label">商品详细信息图片<span class="tpl-form-line-small-title">*</span></label>
+                                            <div class="am-u-sm-9">
+                                                <div class="content_img zoomImgBox">
+                                                    <div class="more_imgs"></div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                
+                                <!-- <div class="widget-body am-fl">
+                                    <div class="widget-body am-fr">
+                                
+                                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">  
+                                            <div class="am-fl message_left">
+                                                <div class="widget-fluctuation-description-amount">
+                                            
+                            
+                
+                                                </span>
+                                            </div>
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">  
+                                            <div class="am-fl message_left">
+                                                <div class="widget-fluctuation-description-amount">
+                                        
+                
+                                                </span>
+                                            </div>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+               </div>
+
+                 <!-- 标的调查表添加模态框 -->
+            <div class="modal fade" id="show_add"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog"  style="overflow: auto; pointer-events:auto">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <hs5class="modal-title" id="myModalLabel">
+                            添加商品介绍图片
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                                <form   style="border: 1px solid #ddd;" class="am-form tpl-form-border-form tpl-form-border-br">
+                                    <div class="am-form-group">
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">商品介绍图片上传 <span class="tpl-form-line-small-title"></span></label>
+                                    <div class="am-u-sm-9">
+                                        <div class="am-form-group am-form-file">   
+                                        <input type="file" name="myfile" multiple="multiple" id="show_file">
+                                    
+
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                                
+                                </form>
+                            </div>
+                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary modal-btn-true show_true">
+                            提交
+                            </button>
+                            <button type="button" class="btn btn-default modal-btn-close" data-dismiss="modal" style="margin-right:100px;">取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 标的图片上传 -->
+            <div class="modal fade" id="more_add"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog"  style="overflow: auto; pointer-events:auto">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <hs5class="modal-title" id="myModalLabel">
+                            添加商品介绍图片
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                                <form   style="border: 1px solid #ddd;" class="am-form tpl-form-border-form tpl-form-border-br">
+                                    <div class="am-form-group">
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">标的图片上传 <span class="tpl-form-line-small-title"></span></label>
+                                    <div class="am-u-sm-9">
+                                        <div class="am-form-group am-form-file">   
+                                        <input type="file" name="myfile" multiple="multiple" id="more_file" class="" accept="image/*">
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                                
+                                </form>
+                            </div>
+                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary modal-btn-true more_true">
+                            提交
+                            </button>
+                            <button type="button" class="btn btn-default modal-btn-close" data-dismiss="modal" style="margin-right:100px;">取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/axios.min.js"></script>
+    <script src="/static/js/jquery-1.12.4.min.js"></script> 
+    <script src="/static/js/amazeui.datatables.min.js"></script>
+    <script src="/static/js/dataTables.responsive.min.js"></script>
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+    <script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/md5.pro.js"></script>
+    <script src="/static/js/md5.js"></script>
+    <script src="/static/js/pdfjs/build/pdf.js"></script>
+    <script src="/static/js/public.js"></script>    
+    <script type="text/javascript">      
+     layui.use(['laydate','element','laypage','layer'], function(){
+        $ = layui.jquery;//jquery
+        // laydate = layui.laydate;//日期插件
+        // lement = layui.element();//面包导航
+        laypage = layui.laypage;//分页
+        layer = layui.layer;//弹出层
+        from = layui.from
+        //以上模块根据需要引入
+    });
+    
+	</script>
+    <script src="/static/js/viewer-jquery.min.js"></script>
+  <script src="/static/js/function.js"></script>
+  <script src="/static/js/upload.js"></script>
+  <script src="/static/js/a_projuct.js"></script>
+  <script src="/static/js/preview.js"></script>
+  <script type="text/javascript">
+    showZoomImg('.zoomImg', 'img');
+    showZoomImg('.zoomImgshow', 'text');
+ </script>
+ <script src="/static/js/delete_imgs.js"></script>
+
+
+
+</body>
+
+</html>

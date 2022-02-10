@@ -1,0 +1,243 @@
+body{
+     background: #e9ecf3;
+     position: relative;
+     overflow:-Scroll;
+     overflow-x: hidden;
+}
+@font-face {
+  font-family: 'HanYixiaoli';
+  src: url("/static/fonts/HanYiXiaoLiShuJian-1.ttf");
+}
+/* 头部 */
+.logodiv{
+  width:160px;
+  height: 60px;
+  line-height:60px;
+  float: left;
+  background: #0e90d2;
+  border: 1rpx solid transparent;
+
+}
+.logodiv img{
+  width: 100%;
+  height:100%;
+  display: block;
+}
+.tpl-header-logo img {
+  width: 20px;
+}
+.logotext{
+  float: left;
+  line-height: 55px;
+  text-align: center;
+  font-size:18px;
+  font-family:'HanYixiaoli';
+  margin-left:30px;
+  font-weight: bold;
+  height: 55px;
+  text-align: center;
+}
+
+.am-fl{
+  /* padding: 2px 10px; */
+  /* margin: 0% 4%; */
+ }
+ span{
+      /* display: block; */
+ }
+ .textspan{
+   font-weight: bold;
+ }
+ .am-fl>span{
+   line-height: 57px;
+   text-align: center;
+   margin-left: 10px;
+   /* display: inline-block; */
+   float: left;
+ }
+ .layui-nav .layui-nav-item a{
+   color:black;
+ }
+ .admin-logo-box>div:nth-child(1){
+    font-weight: bold;
+    line-height: 55px;
+     text-align: center;
+     /* margin-left: -10px; */
+     /* float: left; */
+ }
+ .larry-side-menu{
+   color:rgba(0, 0, 0, 0.5);
+   border-left: 1px solid #ccc;
+   margin-left: 5px;
+   
+ }
+ .layui-layout-admin .header {
+ 
+   border-bottom: 1px solid #ccc;
+   color: #001529;
+ }
+ .layui-nav-child>a:hover{
+   color: black;
+ }
+ .leftnav{
+      /* position: relative;
+      left: 0px; 
+      top: 0px; */
+      background: #fff;
+   /* border: 1px solid #ccc; */
+ }
+ .logo{
+     color: black;
+ 
+ }
+ .admin-logo-box {
+     /* width: 240px; */
+     height: 57px;
+     position: relative;
+ }
+ .layui-nav-item{
+     color: black;
+ }
+ /* 头部标题内容 */
+ .header-demo{
+      background: #fff;
+ }
+ .mainwapper{
+     margin: 1%;
+     z-index: 999;
+    min-height: 900px;
+    width: 100%;
+     /* height: 100%; */
+     /* border-radius: 10px; */
+    /* width: 1620px; */
+     /* background: red; */
+     margin-left:14%;
+     /* box-shadow: -10px 10px 10px rgb(6 17 47 / 70%); */
+     /* position: relative; */
+     position: absolute;
+    }
+ .layui-nav-tree .layui-nav-item a{
+      text-decoration: none;
+ }
+ @media screen and (max-width: 641px) {
+     #time{
+         opacity: 0;
+     }
+
+ }
+ a{
+   text-decoration: none;
+   color:#999;
+ }
+ .alert{
+	width: 1000px !important;
+	margin:0 auto
+}
+.layui-nav{
+  background: #fff;
+}
+.modal-backdrop.in {
+ 
+  z-index: 0;
+}
+.modal-content{
+  color: #001529;
+ font-weight: bold;
+}
+.modal-content td{
+  padding: 15px;
+}
+.modal-content input{
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  
+}
+input[type=radio]{
+  margin-left: 5px;
+}
+.layui-layout-admin{
+  top: 55px;
+}
+.Content_wapper{
+  /* width: 1260px;
+  height: 1000%; */
+  width: 85%;
+  min-height:800px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  /* margin: 0 auto; */
+  /* margin-left: 3%;
+  margin-right: 3%; */
+}
+/* 侧边栏ul高度 */
+
+.modal{
+  top: 15%;
+  left: 15%;
+}
+
+/* 侧边栏 */
+/* .sidebar-nav>li>ul{
+  display: none
+} */
+  .subNavBox{
+    width:240px;
+    background:#122944;
+    margin-top:20px;
+    font-family: serif;
+  }
+  .subNav{
+    cursor:pointer;
+    font-size:18px;
+    color:#fff;
+    line-height:28px;
+    text-align: center;
+    margin: 0 auto;
+    /* font-family: cursive; */
+    background: #112944;
+    padding: 10px 0;  
+}
+  .subNav:hover{
+    /* color:#277fc2; */
+  }
+  .currentDd{
+    /* color:#277fc2 */
+    background: #00b1bd;
+  }
+  .navContent{
+    display: none;
+  }
+  .navContent li a,.subNav li a{
+    display:block;
+    height:28px;
+    text-align:center;
+    font-size:18px;
+    line-height:28px;
+    color:#fff;
+
+  }
+  .navContent li a:hover{
+    color:#fff;
+    /* background-color:#e9ecf3 */
+  }
+  .subNav li a{
+    padding-left: -15px;
+
+  }
+  .navContent li a{
+    padding-left:23%;
+    font-size: 16px;
+  }
+  .navContent li{
+    background: #2d343d;
+  }
+  .case_join,.search_join,.tongji_join,.user_join{
+    margin: 5px 0;
+  }
+  a{
+    text-decoration: none;
+  }
+  

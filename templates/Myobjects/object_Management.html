@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标的管理</title>
+    <link rel="icon" type="image/png" href="/static/i/ZDlogoicon.jpg">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css">
+    <link rel="stylesheet" href="/static/css/x-admin.css" media="all">
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/laydate.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/public.css">
+    <link rel="stylesheet" href="/static/css/new.css">
+    <link rel="stylesheet" href="/static/css/mylaws.css">
+    <link rel="stylesheet" href="/static/css/entering.css">
+    <link rel="stylesheet" href="/static/css/pagination.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2431045_hbwl3x53oep.css">
+    <link rel="stylesheet" href="/static/css/create_times.css">
+
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+</head>
+<style>
+    .show_list {
+        display: block;
+    }
+
+    .hide_lits {
+        display: none;
+    }
+    .wrap {
+        line-height: 40px;
+        height: 40px;
+        border: 1px solid #dcdfe6;
+        width: 300px;
+        /* margin: 40px auto 0; */
+        display: flex;
+        transition: border-color .2s;
+        border-radius: 4px;
+    }
+
+        .wrap:hover {
+            border-color: #c0c4cc;
+        }
+
+        .wrap:active {
+            border-color: #66b1ff;
+        }
+
+        .wrap.active {
+            border-color: #66b1ff;
+        }
+
+        .wrap > div {
+            flex: 1;
+            padding: 0 10px;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .wrap .ali-iconfont {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+    .wrap-l-starTime, .wrap-l-endTime {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrap [name="startTime"], .wrap [name="endTime"] {
+        flex: 1;
+        width: 100%;
+    }
+
+        .wrap [name="startTime"], .wrap [name="endTime"], .wrap [name="startTime"]:focus, .wrap [name="endTime"]:focus {
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+</style>
+<body>
+{% include 'hash.html' %}
+
+<!-- 主题盒子 -->
+<div class="tpl-content-wrapper">
+    
+
+    <div class="row-content am-cf case_cart">
+        <!-- 案件详情信息模块 -->
+        <!-- <div class="row  am-cf head_title" style="margin-bottom: 5%;"> -->
+          <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 head_content">
+              <i class="am-icon-arrow-left sidebar-nav-link-logo black" style="font-size: 18px;"></i>
+              <i class="am-icon-tag sidebar-nav-link-logo" style="font-size: 18px;"></i>标的管理
+          </div>
+        <!-- </div> -->
+        <div class="row object_cart">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget content am-cf">
+                    <div class="widget-body  am-fr">
+                       <div class="widget am-cf">
+                            <div class="am-u-sm-12 am-u-md-10 am-u-lg-10">
+                        
+                                          <div class="object_list">标的列表</div>
+                            
+                            </div>
+                            <div class="am-u-sm-12 am-u-md-2 am-u-lg-2">
+                                <div class="am-form-group">
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs casebtns">
+                                          <button type="button" class="am-btn am-btn-default am-btn-warning export_object">
+                                            <span class="am-icon-archive">导出</span>
+                                         </button>                                        
+                                         <!-- <button type="button"class="am-btn am-btn-default am-btn-danger deleteobject_btn ">
+                                           <span class="am-icon-trash-o ">删除</span>
+                                          </button> -->
+                                            <button type="button"  style="display: none;"  class="am-btn am-btn-default am-btn-danger count_num"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                       
+
+                         <div class="widget am-cf">
+                            <div class="head_state">
+                              <!-- <div class="am-u-sm-12 am-u-md-2 am-u-lg- widget-margin-bottom-lg">
+                                <div class="widget am-cf widget-body-lg">
+                                    <div class="widget-body  am-fr">
+                                    </div>
+                                </div>
+                                </div>  -->
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg search_wapper">
+                          <div class="widget am-cf widget-body-lg">
+                              <div class="widget-body  am-fr">
+                                  <div class="main_search">
+                                    <div class="search_item">
+                                      <div class="wrap">
+                                        创建时间:
+                                        <div class="wrap-l">
+                                            <!-- <i class="ali-iconfont ali-iconshizhong"></i> -->
+                                            <div class="wrap-l-starTime">
+                                                <input name="startTime" class="start_time"  style="font-size: 12px;" type="text" placeholder="开始日期">
+                                            </div>
+                                
+                                        </div>
+                                        <div class="wrap-r">
+                                            <!-- <i class="ali-iconfont ali-iconshizhong"></i> -->
+                                            <div class="wrap-l-endTime">
+                                                <input name="endTime" class="end_time"  style="font-size: 12px;" type="text" placeholder="结束日期">
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="search_item">
+                                      部门/团队：<input type="text" class="team">
+
+                                    </div>
+                                    <div class="search_item">
+                                      姓名：<input type="text"  class="name">
+
+                                    </div>
+                                    <div class="search_item">
+                                      <button class="btn btn-success seatch_submit" type="button" data-toggle="collapse">
+                                        查询
+                                      </button>
+                                      <button class="btn btn-danger clear" type="button" data-toggle="collapse">
+                                        重置
+                                        </button>
+                                      <button class="index_open" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                         <div class="zhan">展开<img src="/static/img/index_down.png" alt=""></div>
+                                         <div class="shou">收起 <img src="/static/img/index_up.png" alt=""></div>
+                                      </button>
+                                    </div>
+                                
+                                  </div>
+                                  <div class="collapse" id="collapseExample">
+                                     <div class="main_search">
+                                      <div class="search_item">
+                                        业务类型: <select class="business_type_search">
+                                           <option value="0">请选择</option>
+                                           <option value="1">司法拍卖</option>
+                                           <option value="2">破产清算</option>
+                                           <option value="3">其他</option>
+                                         </select>
+                                     </div>
+                                      <div class="search_item" style="margin-left:35px;">
+                                        资产类型: <select class="property_type_search">
+                                           <option value="0">请选择</option>
+                                           <option value="1" data-name="破产清算">住宅用房</option>
+                                           <option value="2" data-name="破产清算">商业用房</option>
+                                           <option value="3" data-name="破产清算">工业用房</option>
+                                           <option value="4" data-name="破产清算">其他用房</option>
+                                           <option value="5" data-name="破产清算">机动车</option>
+                                           <option value="6" data-name="破产清算">其他交通</option>
+                                           <option value="7" data-name="破产清算">股权</option>
+                                           <option value="8" data-name="破产清算">土地</option>
+                                           <option value="9" data-name="破产清算">机器设备</option>
+                                           <option value="10" data-name="破产清算">其他</option>
+
+                                         </select>
+                                     </div>
+                                     <div class="search_item">
+                                       资产规模: <select class="estimated_price_search">
+                                         <option value="0">请选择</option>
+                                         <option value="1">100万以下</option>
+                                         <option value="2">100-1000万</option>
+                                         <option value="3">1000万以上</option>
+
+                                       </select>
+ 
+                                     </div>
+                                     <div class="search_item">
+                                      拍卖阶段: <select class="auction_state">
+                                        <option value="0">请选择</option>
+                                        <option value="1">一拍</option>
+                                        <option value="2">二拍</option>
+                                        <option value="3">变卖</option>
+                                        <option value="4">其他</option>
+                                      </select>
+                                       
+                                     
+                                     </div>
+                                     <div class="search_item">
+                                      拍卖平台: <select class="auction_platform">
+                                        <option value="0">请选择</option>
+                                        <option value="1">淘宝网</option>
+                                        <option value="2">京东网</option>
+                                        <option value="3">中拍网</option>
+                                        <option value="4">诉讼资产网</option>
+                                        <option value="5">工行融e购</option>
+                                        <option value="6">北交所</option>
+                                      </select>
+                                       
+                                     
+                                     </div>
+                                     </div>
+                                   
+                                    
+                                  </div>
+                                
+                              </div>
+                          </div>
+                        </div> 
+                        
+
+                            </div>
+                           
+
+                         </div>
+                         <div class="widget am-cf">
+                          <div class="head_state">
+                              <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg">
+                                  <div class="widget am-cf widget-body-lg">
+                                      <div class="widget-body  am-fr">
+                                          <div class="am-scrollable-horizontal  list_top">
+                                              <table width="100%"
+                                                    class="am-table am-table-compact am-text-nowrap tpl-table-black "
+                                                    id="example-r">
+                                                  <thead>
+                                                  <tr>
+                                                      <th>
+                                                          <input type="checkbox" class="al-choose" name="al-choose">
+                                                      </th>
+                                                      <th class="id_th" style="display: none;">uuid</th>
+                                                      <th>
+                                                          <span class="c_span">
+                                                            <div class="c_time_up"> 创建时间 <b class="c_time_up_icon">↓</b></div>
+                                                            <div class="c_time_down"> 创建时间 <b class="c_time_down_icon"> ↑</b></div>   
+                                                          </span>
+
+                                                      </th>
+                                                      <th>
+                                                          <span class="c_span">
+                                                            <div class="u_time_up" >最后修改时间 <b class="u_time_up_cion">↓</b></div>
+                                                            <div class="u_time_down">最后修改时间 <b class="u_time_down_cion">↑</b></div>   
+                                                            </span>
+                                                      </th>
+                                                      <th>姓名</th>
+                                                      <th>部门/团队</th>
+                                                      <th>标的名称</th>
+                                                      <th>委托方</th>
+                                                      <th>业务类型</th>
+                                                      <th>所在的</th>
+                                                      <th>资产类型</th>
+                                                      <th>资产规模</th>
+                                                      <th>拍卖阶段</th>
+                                                      <th>拍卖平台</th>
+                                                      <th>拍卖网址</th>
+                                                      <th>开拍时间</th>
+                                                      <th>结束时间</th>
+                                                      <th>起拍价</th>
+                                                      <th>评估价</th>
+                                                      <th>拍卖结果</th> 
+                                                      <th>成交价</th>
+                                                      <th>溢价率</th>
+                                                      <th>应收服务费</th>
+                                                      <th>已收服务费</th>
+                                                      <th>备注</th>
+                                                  
+                                                  </tr>
+                                                  </thead>
+                                                  <tbody class="tbContent object_tbody">
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                          <div class="am-fl">
+                                              <div id="pages">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>    
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+         <!-- 模态框 -->
+         <div class="modal fade" id="objectadd" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <hs5class="modal-title" id="myModalLabel">
+                          添加标的信息
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <form class="am-form tpl-form-border-form tpl-form-border-br">
+                          <div class="am-form-group">
+                              <label for="user-name" class="am-u-sm-3 am-form-label">标的名称 <span class="tpl-form-line-small-title">*</span></label>
+                              <div class="am-u-sm-9">
+                                  <input type="text" class="tpl-form-input object_name" id="user-name" placeholder="请输入标的">
+                              </div>
+                          </div>
+                          <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-3 am-form-label">所在地 <span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-3">
+                                <select id="sheng">
+                                  <option value="-1">--请选择--</option>
+                                </select>
+                            </div>
+                            <div class="am-u-sm-3">
+                              <select id="shi">
+                              </select>
+
+                          </div>
+                          <div class="am-u-sm-3">
+                            <select id="qu">
+                            </select>
+                        </div>
+                        </div>
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">财产类型<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="property_type">
+                              <option value="-1">请选择</option>
+                              <option value="0">住宅用房</option>
+                              <option value="1">商业用房</option>
+                              <option value="2">工业用房</option>
+                              <option value="3">其他用房</option>
+                              <option value="4">股权</option>
+                              <option value="5">土地</option>
+                              <option value="6">机器设备</option>
+                              <option value="7">其他财产</option>              
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">预估价格<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="estimated_price">
+                              <option value="-1">请选择</option>
+                              <option value="0">100万以下</option>
+                              <option value="1">100-1000万</option>
+                              <option value="2">1000万以上</option>
+                            </select>
+                          </div>
+                        </div>
+                      <div class="jing_div">
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">潜在竞买人<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="potential_purchaser">
+                              <option value="1">无</option>
+                              <option value="2">有</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group miaoshu">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">竞买人描述<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input bidder_describe" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="paimai_div">
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">拍卖状态<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="auction_states">
+                              <option value="0">未上拍</option>
+                              <option value="1">一拍成交</option>
+                              <option value="2">二拍成交</option>
+                              <option value="3">变卖成交</option>
+                              <option value="4">以物抵债</option>
+                              <option value="5">撤拍</option>
+                              <option value="6">其他</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group qingkaung">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">情况说明：<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input presentation_condition" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">公告时间<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="datetime-local" class="tpl-form-input announcement_time" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">成交时间<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="datetime-local" class="tpl-form-input auction_time" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">拍卖平台<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="auction_platform">
+                              <option value="0"></option>
+                              <option value="1">淘宝网</option>
+                              <option value="2">京东网</option>
+                              <option value="3">人民法院诉讼财产网</option>
+                              <option value="4">公拍网</option>
+                              <option value="5">中国拍卖行业协会网</option>
+                              <option value="6">工商银行融e购</option>
+                              <option value="7">北京产权交易所</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">拍卖网址<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input auction_url" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">起拍价(/元)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input starting_price" id="price_num" placeholder="请输入起拍价">
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">成交价(/元)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input transaction_price" id="transaction_price" placeholder="请输入成交价">
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">溢价率(%)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input premium_rate" id="user-name" placeholder="" disabled>
+                            
+                          </div>
+                        </div>
+                        <div class="am-form-group paimai">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">备注<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <textarea type="text" class="tpl-form-input p_remark" id="user-name" placeholder="" rows="3"></textarea>
+                            
+                          </div>
+                        </div>
+                      </div>  
+                        <!-- 评估状态 -->
+                      <div class="ping_div"> 
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">评估状态<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="assess_state">
+                              <option value="1">未评估</option>
+                              <option value="2">已评估</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group pinggustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">评估方式<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="assess_method">
+                              <option value="0"></option>
+                              <option value="1">当事人议价</option>
+                              <option value="2">定向询价</option>
+                              <option value="3">网络询价</option>
+                              <option value="4">委托评估</option>
+                              <option value="5">其他</option>
+                          </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group pinggustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">评估机构<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input appraisal_agency" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group pinggustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">评估价格(元)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input appraisal_price" id="appraisal_price" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group pinggustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">评估摘要<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                            <div class="am-form-group am-form-file">   
+                              <input type="file" name="myfile" multiple="multiple" id="appraisal_file" class="appraisal_file">
+                                 <div class="file_name">
+                                      <div id="wei_text"></div>
+                                     </div>
+                              <i style="font-size: 12px;">(仅支持图片/pdf文件上传，图片大小不能超过2M，文件不能超过5M)</i>
+                          
+                          </div>
+                          </div>
+                        </div>
+                        <div class="am-form-group pinggustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">备注<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <textarea type="text" class="tpl-form-input assess_note" id="user-name" placeholder="备注信息"  rows="3"></textarea>
+                             
+                          </div>
+                        </div>
+                      </div>   
+                        <!-- 交割状态 -->
+                      <div class="jiaoge_div">
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">交割状态<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="after_state">
+                              <option value="0">未交割</option>
+                              <option value="1">已交割</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group shouhoustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">买受人<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input buyer" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group shouhoustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">买受人电话<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input buyer_phoneNum" id="user-name" placeholder="请输入申请人姓名">
+                          </div>
+                        </div>
+                        <div class="am-form-group shouhoustate">
+                          <label for="user-weibo" class="am-u-sm-3 am-form-label">交割确认书 <span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <div class="am-form-group am-form-file">
+                                  <input class="jiaoge_file" id="jiaoge_file" type="file" multiple>
+                                   <div class="file_name">
+                                      <div id="jioage_text"></div>
+                                     </div>
+                                     <i style="font-size: 12px;">(仅支持图片/pdf文件上传，图片大小不能超过2M，文件不能超过5M)</i>
+                              </div>
+
+
+
+
+                          </div>
+                        </div>
+                        <div class="am-form-group shouhoustate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">备注<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <textarea type="text" class="tpl-form-input remark" id="user-name" placeholder="请输入申请人姓名" rows="3"></textarea>
+                          </div>
+                        </div>
+                      </div>    
+                      <!-- 收费状态 -->
+                      <div class="shoufei_div">
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">收费状态<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="order_state">
+                              <option value="1">未收费</option>
+                              <option value="2">已收费</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="am-form-group shoufeistate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">应收服务费(元)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input ying_money" id="ying_money" placeholder="请输入应收">
+                          </div>
+                        </div>
+                        <div class="am-form-group shoufeistate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">已收服务费(元)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input shou_money" id="shou_money" placeholder="请输入已收服务费">
+                          </div>
+                        </div>
+                        <div class="am-form-group shoufeistate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">已收服务费说明<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input shou_message" id="user-name" placeholder="请输已收服务服务费说明">
+                          </div>
+                        </div>
+                        <div class="am-form-group shoufeistate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">备注<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <textarea type="text" class="tpl-form-input shou_remark" id="user-name" placeholder="请输入申请人姓名" rows="3"></textarea>
+
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 发票状态 -->
+                      <div class="fapiao_div">
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">发票状态<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                            <select name="" id="" class="kiaopiao_state">
+                              <option value="1">未开票</option>
+                              <option value="2">已开票</option>
+                            </select>
+          
+                          </div>
+                        </div>
+
+                        <div class="am-form-group kaipiaostate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">开票日期<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="datetime-local" class="tpl-form-input kaipiao_date" id="user-name">
+                          </div>
+                        </div>
+                        <div class="am-form-group kaipiaostate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">开票金额(元)<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input kaipaio_price" id="kaipaio_price" placeholder="请输入开票金额">
+                          </div>
+                        </div>
+                        <div class="am-form-group kaipiaostate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">发票上传<span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="file" class="tpl-form-input kaipiao_file" id="user-name">
+                                    <div class="file_name">
+                                       <div id="kaipiao_text"></div>
+                                      </div>
+                                   <i style="font-size: 12px;">(图片大小不能超过2M，文件不能超过5M)</i>
+
+                          </div>
+                        </div>
+                        <div class="am-form-group kaipiaostate">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">备注<span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <textarea type="text" class="tpl-form-input fapiao_remark" id="user-name" placeholder="请输入备注信息" rows="3"></textarea>
+                             
+                          </div>
+                        </div>
+                        
+
+                      </div>
+                      <!-- 标的图片 -->
+                      <div class="am-form-group">
+                        <label for="user-weibo" class="am-u-sm-3 am-form-label">标的照片上传 <span class="tpl-form-line-small-title">*</span></label>
+                        <div class="am-u-sm-9">
+                            <div class="am-form-group am-form-file">
+                                 <input type="file"  class="object_imgs" multiple accept="Image/*">
+                                  <div class="file_name">
+                                    <div id="b_img_text"></div>
+                                  </div>
+                                <i style="font-size: 12px;">(图片大小不能超过2M)</i>
+                            </div>
+
+                        </div>
+                    </div>
+                      <!-- 调查表 -->
+                      <div class="am-form-group">
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">标的调查表 <span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                                <div class="am-form-group am-form-file">
+                                    <input class="objectInvestigate_file" id="doc-form-file" type="file" multiple>
+                                    <div class="file_name">
+                                      <div id="object_diao_text"></div>
+                                    </div>
+                                     <i style="font-size: 12px;">(仅支持图片/pdf文件上传，图片大小不能超过2M，文件不能超过5M)</i>
+                               </div>
+                            </div>   
+                      </div>
+                      <!-- 附件 -->
+                      <div class="am-form-group">
+                          <label for="user-weibo" class="am-u-sm-3 am-form-label">上传附件 <span class="tpl-form-line-small-title"></span></label>
+                          <div class="am-u-sm-9">
+                              <div class="am-form-group am-form-file">
+                                  <input class="otFile_id" id="doc-form-file" type="file" multiple accept=".zip,.rar"> 
+                                     <div class="file_name">
+                                        <div id="fujian_text"></div>
+                                    </div>
+                                    
+                                  <i style="font-size: 12px;">(仅支持zip/rar文件上传，图片大小不能超过2M，文件不能超过5M)</i>
+                              </div>
+
+                          </div>
+                      </div>
+                        <!-- 标的备注 -->
+                      <div class="am-form-group ">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">标的物备注<span class="tpl-form-line-small-title"></span></label>
+                        <div class="am-u-sm-9">
+                            <textarea type="text" class="tpl-form-input object_beizu" id="user-name" placeholder="请输入备注信息" rows="3"></textarea>
+                           
+                        </div>
+                      </div>
+                      
+
+                      </form>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary modal-btn-true objectTrue">
+                           确定
+                        </button>
+                        <button type="button" class="btn btn-default modal-btn-close" data-dismiss="modal" style="margin-right:100px;">取消
+                        </button>
+                    </div>
+                </div>
+            </div>
+          </div>    
+          <!-- 删除 -->
+          <div class="modal fade" id="object_delete" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <!-- <hs5class="modal-title" id="myModalLabel">
+                          添加案件信息
+                        </h5> -->
+                    </div>
+                    <div class="modal-body">
+                        <div class="create-fill">
+                                 <p>确定删除吗？</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary modal-btn-true objectDelete_True">
+                           确定
+                        </button>
+                        <button type="button" class="btn btn-default modal-btn-close" data-dismiss="modal" style="margin-right:100px;">取消
+                        </button>
+                    </div>
+                </div>
+            </div>
+          </div>
+  
+
+
+</div>
+<!-- <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script> -->
+<script src="/static/js/axios.min.js"></script>
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<script src="/static/js/amazeui.datatables.min.js"></script>
+<script src="/static/js/dataTables.responsive.min.js"></script>
+<script src="/static/lib/layui/layui.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/x-admin.js"></script>
+<script src="/static/js/method.js"></script>
+<script src="/static/js/citydata.js"></script>
+<script src="/static/js/md5.pro.js"></script>
+<script src="/static/js/md5.js"></script>
+<script src="/static/js/public.js"></script>
+<script src="/static/js/query.js"></script>
+<script src="/static/js/pagination.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/js/jquery-datePicker.min.js" ></script>
+
+
+
+<script type="text/javascript">
+    layui.use(['laypage', 'layer'], function () {
+        $ = layui.jquery;//jquery
+        laydate = layui.laydate;//日期插件
+        lement = layui.element();//面包导航
+        laypage = layui.laypage;//分页
+        layer = layui.layer;//弹出层
+
+        //以上模块根据需要引入
+    });
+</script>
+
+<script src="/static/js/function.js"></script>
+<script src="/static/js/object_Management.js"></script>
+<script src="/static/js/modal.js"></script>
+</body>
+</html>

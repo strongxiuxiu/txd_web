@@ -1,0 +1,115 @@
+.laws {
+    width: 450px;
+    margin-left: 6%;
+  }
+  .laws .anjian {
+    font-size: 25px;
+  }
+  .mycontents {
+    margin-left: 6%;
+    margin-top: 1%;
+  }
+  /* 角色信息样式 */
+  .main_tb {
+    /* color: rgb(134, 131, 131); */
+    border: 1px solid #EBEBEB;
+    margin-top: 10px;
+    color:#333;
+    /* text-align: center; */
+  }
+  .main_tb thead th {
+    /* background: #EBEBEB; */
+    height: 36px;
+    line-height: 36px;
+  }
+  td,th{
+    text-align: center;
+    /* border: 1px solid #EBEBEB; */
+  }
+  .tbContent tr td{
+
+  }
+  .main_tb thead th {
+    border: 1px solid #ddd;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    width:112px;
+  }
+  .tbContent tr td:nth-child(1){
+    width: 35px;
+  }
+  /* 我的费用 */
+  /* .main_tb thead th:nth-child(11) */
+  .tbContent tr td:nth-child(10){
+    /* width: 200px; */
+  }
+
+
+  .updatebtn,.deletebtn  {
+    color: #fff;
+    border-radius: 3px;
+    margin: 0 4px;
+    height: 25px;
+    /* padding: 0px 5px; */
+    line-height: 25px;
+    text-align: center;
+    /* float: left; */
+    font-size: 12px;
+  }
+  .tbContent button i {
+    padding: 0px 5px;
+  }
+.updatebtn {
+     background:white;
+    color:#36c6d3;
+    border: 1px solid #36c6d3;
+    
+  }
+ .deletebtn {
+  background:white;
+    color: #e7505a;
+    border: 1px solid #FF5722;
+  }
+  /* 隔行换色 */
+ /* table tr:nth-child(even)
+{
+    background: #F9F9F9;
+} */
+.log_system_table{
+  margin-left: 10%;
+}
+.mycases{
+  position: absolute;
+}
+.laws{
+margin-top: 1%;
+}
+.logtext{
+  margin-left: 15%;
+}
+.objectid{
+  display: none;
+}
+.uuid{
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* uuid隐藏 */
+.id_th,.uuid{
+  display: none;
+}
+.more{
+  color: orange;
+  margin:0 5px ;
+}
+a{
+  text-decoration: none;
+}
+.all-choose{
+  width: 35px;
+}
+
+  

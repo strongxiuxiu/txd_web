@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>添加商品</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js"></script>
+    <link rel="stylesheet" href="/static/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css">
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/upload.css">
+
+    <link rel="stylesheet" href="/static/css/add_product.css">
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+</head>
+
+<body data-type="widgets">
+    <!-- <script src="assets/js/theme.js"></script> -->
+    
+    <div class="am-g tpl-g">
+        {% include 'hash.html' %}
+        <!-- 内容区域 -->
+        <div class="tpl-content-wrapper">
+
+            <div class="container-fluid am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span><small></small></div>
+                        <p class="page-header-description"></p>
+                    </div>
+                    <div class="am-u-lg-3 tpl-index-settings-button">
+                      
+                    </div>
+                </div>
+
+            </div>
+            <div class="row-content am-cf">
+                <div class="row">
+
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">添加商品信息</div>
+                            </div>
+                            <div class="widget-body am-fr">
+                                <form class="am-form tpl-form-border-form tpl-form-border-br">
+                                    <div class="am-form-group  add_items">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">商品编号 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input product_number" id="user-name" placeholder="请输入标题文字">
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group  add_items">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">商品名称 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input product_name" id="user-name" placeholder="请输入标题文字">
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group  add_items">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">商品地址 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input product_address" id="user-name" placeholder="请输入商品地址">
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group add_items">
+                                        <label for="user-phone" class="am-u-sm-3 am-form-label">商品类型 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <select data-am-selected="{searchBox: 1}" style="display: block;" class="product_type">
+                                                <option value="0">请选择</option>
+                                                <option value="1">VPX系统</option>
+                                                <option value="2">解决方案</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group add_items">
+                                        <label for="user-phone" class="am-u-sm-3 am-form-label">商品状态 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <select data-am-selected="{searchBox: 1}" style="display: none;" class="product_state">
+                                                <option value="0">请选择</option>
+                                                <option value="1">在售</option>
+                                                <option value="2">下架</option>
+                                                <option value="3">已停产</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group add_items">
+                                        <label for="user-phone" class="am-u-sm-3 am-form-label">商品周期 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <select data-am-selected="{searchBox: 1}" style="display: none;" class="production_cycle">
+                                                <option value="0">请选择</option>
+                                                <option value="1">10天交付</option>
+                                                <option value="2">30天交付</option>
+                                                <option value="3">40天交付</option>
+                                                <option value="4">60天交付</option>
+                                                <option value="5">90天交付</option>
+                                                <option value="6">半年以上</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group  add_items">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">商品负责人 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input product_owner" id="user-name" placeholder="请输入商品负责人">
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group add_items">
+                                        <label for="user-intro" class="am-u-sm-3 am-form-label">商品内容<span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <textarea class="product_body" rows="6" id="user-intro" placeholder="请输入商品内容"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group add_items">
+                                        <label for="user-intro" class="am-u-sm-3 am-form-label">商品描述<span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                            <textarea class="product_describe" rows="6" id="user-intro" placeholder="请输入商品描述"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group ">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">百度网盘地址 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-6">
+                                            <input type="text" class="tpl-form-input Baidu_web_disk_address" id="user-name" placeholder="网盘地址">
+                                        </div>
+                                          <div class="am-u-sm-3">
+                                              <input type="text"  style="width:40%;" class="tpl-form-input verification_code" id="user-name" placeholder="请输入网盘提取码">
+                                          </div>
+                                          <!-- <label for="user-name" class="am-u-sm-3 am-form-label">网盘提取码 <span class="tpl-form-line-small-title">*</span></label> -->
+                                    </div>
+                                    <div class="am-form-group add_items">
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">商品介绍图片 <span class="tpl-form-line-small-title">*</span></label>
+                                        <div class="am-u-sm-9">
+                                          <!-- <input type="file" class="pictures_show_file" multiple> -->
+                                          <div id="uploadImgs" style="margin-bottom: 20px;">
+                                            <label for="fileUpIpt" id="labelId">
+                                                <div class="uploadImgs-add">+</div>
+                                            </label>
+                                            <div class="type-file-div">
+                                                <input type="file" class="input-file" name="luTest[]" style="display: none;">
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                            <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success add_product">创建</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <script src="/static/js/amazeui.datatables.min.js"></script>
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+    <script src="/static/js/dataTables.responsive.min.js"></script>
+    <script src="/static/js/md5.pro.js"></script>
+    <script src="/static/js/md5.js"></script>
+    <script src="/static/js/upload.js"></script>
+    <script>
+             layui.use(['laydate', 'element', 'laypage', 'layer'], function () {
+                $ = layui.jquery;//jquery
+                // laydate = layui.laydate;//日期插件
+                // lement = layui.element();//面包导航
+                laypage = layui.laypage;//分页
+                layer = layui.layer;//弹出层
+                //以上模块根据需要引入
+            });
+         var gbOption = null; //必须，固定变量名
+            var filesArr=[]; //固定写法 这个就是上传能拿到的 files的集合，
+            var fileClass = 'input-file'; //必须，固定变量名，值可自定义，就是input的 class自定义后 需要在这重新声明
+            var imgObj2 = []; //可自定义，图片上传功能 时必须给的东西，传递到imgsUpload
+            var upoad; //可自定义，上传功能时的  工具人，自定义然后传递到imgsUpload 就行
+            var imgMaxNum=9;  //最多上传3张
+            var ispre; ////反显  时的工具人属性，是一个对象，里面包含了 当前图片预览步骤，和图片数组。 这个最好固定，你要改就一起要改upload.js里面的
+
+            setTimeout(function () { //setTimeout变成异步加载，不然提示有些函数找不到，可自己优化
+                imgsUpload(imgObj2,upoad,imgMaxNum); //上传时调用
+                var imgObj = ['./t1.png', './t2.png', './t3.png'] //反显, 模拟反显的数据来源，真实是从服务器获取数据
+                gbOption=ispre = new imgPre(imgObj, true); //反显
+                createPreDiv(); //创建用于图片预览的DIV结构，上传和返显都要调用
+            }, 100)
+
+
+                //得到files的集合，后你想new Fromdata 然后ajax, 还是怎么给后台 就随你玩了!!!!
+                if(filesArr.length>0)alert('得到files的集合'); 
+    </script>
+    <script src="/static/js/add_projuct.js"></script>
+
+</body>
+
+</html>

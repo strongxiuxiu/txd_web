@@ -1,0 +1,423 @@
+.texttile{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    color: #999;
+    width: 150px;
+    font-size: 18px;
+    font-weight: bold;
+}
+/* 案件信息表单 */
+.case_wapper{
+    width: 1000px;
+    /* height: 370px; */
+    border-bottom: 1px solid #ddd;
+    margin: 20px auto;
+    position: relative;
+    color: #666;
+    background: #FCFCFC;
+}
+.case_title{
+    position: relative;
+    margin: 2% 0;
+}
+.add_case{
+    position: absolute;
+    top: 10px;   
+}
+.add_case{
+    right: 10px;
+   font-size: 12px;
+}
+.case{
+    left: 5px;
+    font-size: 18px;
+    color:#999;
+    font-weight: bold;
+}
+.case_table,.object_table{
+    margin-top: 1%;
+    border: 1px solid orange;
+    font-size: 12px;
+    /* opacity: 0; */
+}
+.case_table{
+    height: 450px;
+    display:none;
+}
+.table_content{
+    /* height: 265px; */
+}
+ul li{
+    float: left;
+}
+.case_wapper .headlist li{
+    width: 50%;
+    margin: 5px 0px;  
+}
+.headlist,.objectlist,.textlist{
+    margin-left: 15%;
+    margin-top: 10px;
+}
+.casebtn_div button{
+    margin: 0px 10px;
+    float: left;
+}
+
+.savebtn{
+    background: #ff6000;
+    color: #FCFCFC;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    outline: none;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 20%;
+}
+.quxiaobtn{
+    background: #FCFCFC;
+    color: #666;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    outline: none;
+    font-size: 12px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 5%;
+}
+.case_edit{
+    background:red;
+    color: #fff;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    outline: none;
+    font-size: 12px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 5%;
+    display: none;
+}
+.text_title{
+    color: #666;
+    font-size: 18px;
+    margin-left: 2%;
+    padding-top: 5px;
+}
+button{
+    border: none;
+    background: transparent;
+}
+strong i{
+    font-weight: normal;
+}
+.bi{
+    font-size: 12px;
+    font-style: normal;
+    color: orangered;
+}
+.case_table strong{
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+    
+}
+.free_table .paimai_list strong,.fujian{
+    display: inline-block;
+    width: 78px;
+    text-align: right;
+    font-style: normal;
+    font-size: 12px;
+}
+.free_table .file_list{
+    height: 70px;
+}
+.fujian,.weituoshu{
+    margin-left: 30%;
+}
+/* 案件信息结束 */
+
+/* 标的信息开始 */
+ .object_wapper,.free_wapper{
+    width: 1000px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #ddd;
+    margin: 40px auto;
+    position: relative;
+    color: #666;
+    background: #FCFCFC;
+    /* display: none; */
+}
+/* 头部 */
+.object_table .table_content ul{
+    margin-top: 1%;
+    margin-left: 10%;
+    /* border: 1px solid red; */
+}
+.object_head{
+    height: 45px;
+    border-bottom: 1px solid #ddd;
+    line-height: 45px;
+    text-align:center;
+    width: 700px;
+    margin: 0 auto;
+}
+.object_head input,.object_items input{
+    height:20px;
+    width: 100px;
+}
+
+.object_head>div,.shengwapper>div{
+    float: left;
+}
+/* .objectname{
+    margin-left: 19%;
+} */
+.shengwapper{
+      margin-left: 1%;
+}
+/* 主题内容 */
+.object_items{
+    width: 700px;
+    height:30px;
+    line-height: 30px;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   margin: 0 auto;
+     /* border: 2px dashed #666; */
+     margin-top: 5px;
+}
+
+.paimai_list .items,.file_list .items,.pingu_list .items,.shouhou_list .items{
+    margin-left: 4%;
+}
+/* .right{
+   width: 30%;
+}
+.right{
+    margin-left: 30%;
+} */
+.right1{
+    margin-left: 38%;
+}
+.jingmai{
+    margin-left: 5px;
+
+}
+
+.pingu_list{
+    height: 120px;
+    border-bottom: 1px solid #ddd;
+}
+.shouhou_list{
+    height:120px;
+    border-bottom:1px solid #ddd;
+}
+.file_list{
+    height: 200px;
+    border-bottom:1px solid #ddd;
+}
+.free_fujian{
+    height: 90px;
+    border-bottom:1px solid #ddd;
+
+}
+.free_fujian>.items{
+    float: left;
+    width: 50%;
+}
+.free_fujian .items:nth-child(1){
+    width: 32%
+}
+.free_fujian .items:nth-child(2){
+    width: 68%;
+}
+.file_list>div:nth-child(1){
+    width: 100%;
+    height: 70%;
+    border: 1px solid #ddd;
+   
+}
+.file_list>div:nth-child(2){
+    width: 100%;
+    height: 30%;
+}
+.paimai_list{
+    height: 100px;
+}
+.free_table .paimai_list{
+    height: 30px;
+}
+.items .paimaiul li{
+    float: none;
+}
+.priceul li{
+    float: none;
+}
+/* 按钮部分 */
+.buttondiv{
+    width: 150px;
+    height: 20px;
+    margin: 0 auto;
+}
+.buttondiv{
+       width: 80px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+
+}
+.objectsave,.objectoff,.freesave,.freeoff{
+    /* float: left; */
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    outline: none;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+    margin-left: 2%;
+    margin-top: 3px;
+}
+.objectsave,.freesave{
+    background: #ff6000;
+    color: #FCFCFC;
+}
+.objectoff,.freeoff{
+    background: #FCFCFC;
+    color: #666;
+    border: 1px solid #666;
+}
+.object_table strong{
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+    font-size: 14px;
+}
+.border{
+  border-bottom: 1px solid #ddd;
+}
+.pinggu{
+    margin-left: 10%;
+}
+.object_table{
+    color: #666;
+}
+.items p{
+    margin: 0px;
+}
+
+/* 部分内容影藏操作后显示 */
+.paimai,.pinggustate,.shouhoustate,.miaoshu,.zengzhi,.kaipiao,.creason,.qingkaung{
+    display: none;
+}
+.kaipiao1{
+    display:none;
+}
+.subNavBox ul li{
+    float: none;
+}
+.right_file{
+    float: left;
+    width: 50%;
+}
+/* 照片预览部分样式 */
+.photo>div{
+    float: left;
+}
+.create-fill{
+    width: 320px;
+    margin: 0 auto;
+}
+.free_fujian{
+    margin-top: 10px;
+}
+.cjprice{
+    margin-left: 21%;
+}
+.baifen>.items{
+    width: 30%;
+}
+#onjectnames{
+    width: 200px;
+}
+/* 附件，委托书编辑时删除按钮 */
+.case_w_delete,.case_f_delete{
+    color: red;
+}
+/* 委托书与附件是否上传过判断 */
+.oldpoa,.oldoa{
+    display: none;
+}
+.textlist li>div{
+    float: left;
+}
+/* .textlist1 li{
+  width: 25%;
+} */
+.textlist{
+  margin-top: 20px;
+    width: 700px;
+    height: 30px;
+}
+.textlist li{
+    margin: 0px 5px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+}
+.textlist1{
+    width: 125px;
+    height: 50px;
+    margin-left: 22%;
+    margin-top: 10px;
+    /* border: 1px solid red; */
+    float: left;
+}
+.textlist1>.text_item {
+    width: 50%;
+}
+.headlist{
+    width: 700px;
+    height: 23px;
+}
+
+.oldoa,.oldpoa{
+    border: none;
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.text_item span,.text_item img{
+    /* display: inline-block; */
+    float: left;
+}
+.old_w_delete,.old_f_delete{
+    width: 19px;
+    margin-left: 5px;
+    border-radius: 50%;
+    border-color: #999;
+    border: 1px solid red;
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    color: red;
+}
+.case_w_delete,.case_f_delete{
+   opacity: 0;
+   cursor: pointer;
+
+}
+
+
+

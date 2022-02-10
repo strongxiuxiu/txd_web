@@ -1,0 +1,97 @@
+body{
+    background: #e9ecf3;
+
+}
+/* 中部内容样式 */
+/* 职工内容样式 */
+.maincontent{
+    width: 1200px;
+    height:800px;
+    /* border: 1px solid red; */
+    /* margin: 0% 20%; */
+    background: #fff;
+    z-index: 999;
+}
+.tiowapper,.tablewapper{
+    /* margin: 10px 20px;  */
+    height: 300px;
+    /* border: 1px solid red; */
+ 
+}
+.tiowapper{
+     margin: 0% 10%;
+}
+.tablewapper{
+  width: 1000px;
+  margin: 3% 10%;
+    
+}
+.uersbtn{
+    margin: 20px;
+}
+.usersbtn>button{
+    margin: 20px 20px;
+
+}
+.tiowapper>p,.tablewapper>p{
+    /* font-family: cursive; */
+    font-size: 18px;
+    padding: 0px 10px;
+}
+.tiowapper>p>i,.tablewapper>p>i{
+    padding: 0px 10px;
+}
+
+.list li {
+    width: 500px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-left:50px ;
+}
+.list li span{
+    
+    float: left;
+
+}
+/* 中部表格内容样式 */
+.main_tb {
+    /* color: rgb(134, 131, 131); */
+    border: 0.2rem solid #ddd;
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #838FA1;
+}
+.main_tb td, .main_tb th {
+    padding: 10px;
+}
+.main_tb thead th {
+    background: #F2F2F2;
+  }
+  .tbContent tr td,.main_tb thead th {
+    /* border: 1px solid #EBEBEB; */
+    border: 1px solid #EBEBEB;
+    height: 36px;
+    line-height: 34px;
+    text-align: center;
+  }
+/* 按钮组样式 */
+#btngroup{
+    margin-top: 20px;
+    margin-left:20px ;
+}
+#btngroup>button{
+    outline: none;
+    border: none;
+    margin: 0px 5px;
+}
+.alert{
+	display: none;
+}
+.anjian_item{
+    border:1px solid orange;
+    width: 800px;
+    height: 600px;
+}

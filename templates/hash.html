@@ -1,0 +1,249 @@
+<link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+
+<link rel="stylesheet" href="/static/css/hash.css">
+
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<body>
+  <script src="/static/js/theme.js"></script>
+    <!-- 头部 -->
+    <header>
+        <div class="am-fl tpl-header-logo">
+            <div class="user_admin">
+                <span class="time user-panel-logged-in-text">
+                   <span class="hours"></span>
+                   <span class="minutes"></span>
+                 
+                </span>
+            </div>
+            <div class="user_admin">
+                <span class="date user-panel-logged-in-text">
+                    <span class="year"></span>
+                    <span class="month"></span>
+                    <span class="day"></span>
+                </span>
+            </div>
+             
+        </div>
+        <div class="tpl-header-fluid">
+            <div class="am-fl tpl-header-switch-button am-icon-list cebtn">
+                <span>
+            </span>
+            </div>
+          <div class="am-fl tpl-header-search">
+                <div class="logotext">泰星达后台管理系统</div>
+            </div>   
+            <div class="am-fr tpl-header-navbar">
+                <ul>
+
+                    <li class="am-dropdown tpl-dropdown user_li" data-am-dropdown>
+                        <a class="am-dropdown-toggle tpl-dropdown-toggle header_a" data-am-dropdown-toggle>
+                            <img  alt="" class="header_photo" href=""> 
+                            {% if request.session.username %}
+                            <span id="username">{{request.session.username}}</span>
+                            <span id="status" style="display: none;">{{request.session.account_status}}</span>
+                            {% else %}
+                            <a href=""></a>
+                            {% endif %}
+                            <span class="img_src" style="display: none;"></span>
+                            <span class="s_id" style="display: none;"></span>
+                        </a>
+                        <ul class="am-dropdown-content tpl-dropdown-content">
+                            <li class="tpl-dropdown-menu-messages">
+                                {% if request.session.id %}
+                                <a id="user_id" href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">{{request.session.id}}</a>
+                                {% else %}
+                                <a href=""></a>
+                                {% endif %}
+                            </li>
+                            <li class="tpl-dropdown-menu-messages">
+                                <a id="role" href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                    {{request.session.role}}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+   
+                 
+                  
+                    <li class="am-text-sm">
+                        <a href="">
+                            <span class="am-icon-sign-out"></span> 退出
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+         </div> 
+           
+    </header>
+
+    <!-- 侧边导航栏 -->
+    <div class="left-sidebar">
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-link shouye">
+                <a href="/web_index" class="sidebar-nav-sub-title">
+                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico" style="opacity:0"></span>
+                </a>
+            </li>
+            <li class="sidebar-nav-link  zhanghuma">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-user sidebar-nav-link-logo"></i> 商品
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link userma">
+                        <a href="/product/web_product_index">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span>商品详情
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-nav-link  zhanghuma">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-user sidebar-nav-link-logo"></i> 组织
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link userma">
+                        <a href="">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span>账户管理
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-nav-link shouye">
+                <a href="/" class="sidebar-nav-sub-title">
+                    <i class="am-icon-home sidebar-nav-link-logo"></i> 日志
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico" style="opacity:0"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script src="/static/lib/layui/layui.js"></script>
+
+<script>
+        (function(){
+            layui.use(['laydate', 'element', 'laypage', 'layer'], function () {
+            $ = layui.jquery;//jquery
+            // laydate = layui.laydate;//日期插件
+            lement = layui.element();//面包导航
+            laypage = layui.laypage;//分页
+            layer = layui.layer;//弹出层
+            //以上模块根据需要引入
+           });
+
+            let  user_grader = localStorage.getItem("user_grader")
+            $(".tongjima").click(function(){
+                layer.msg("该模块正在开发中")
+            })
+            if(user_grader == 0){
+                $(".shouye").css({
+                    display:"none"
+                })
+                $(".casema").css({
+                    display:"none"
+                })
+                // $(".searchma").css({
+                //     display:"none"
+                // })
+                $(".weituoma").css({
+                    display:"none"
+                })
+                // $(".objectma").css({
+                //     display:"none"
+                // })
+                $(".filema").css({
+                    display:"none"
+                })
+                $(".own").css({
+                    display:"none"
+                })
+                $(".tongjima").css({
+                    display:"none"
+                })
+                $(".tema").css({
+                    display:"none"
+                })
+            }else if(user_grader == 1){
+                // $(".casema").css({
+                //     display:"none"
+                // })
+                // $(".tongjima").css({
+                //     display:'none'
+                // })
+                // $(".searchma").css({
+                //     display:"none"
+                // })
+                // $(".tema").css({
+                //     display:"none"
+                // })
+                $(".logma").css({
+                    display:"none"
+                })
+            }else if(user_grader == 2){
+                // $(".filema").css({
+                //     display:"none"
+                // })
+                $(".tema").css({
+                    display:"none"
+                })
+                $(".logma").css({
+                    display:"none"
+                })
+                // $(".tongjima").css({
+                //     display:'none'
+                // })
+
+            }else if(user_grader == 3){
+                // $(".filema").css({
+                //     display:"none"
+                // })
+                $(".tema").css({
+                    display:"none"
+                })
+                $(".logma").css({
+                    display:"none"
+                })
+                $(".zhanghuma").css({
+                    display:"none"
+                })
+            }
+            $(".header_a").click(function(){
+                // console.log("头像")
+                if(user_grader !=0){
+                    // console.log("跳闸")
+               $(".header_a").attr("href","/user/own")
+            }
+
+            })
+            
+            setInterval(function(){
+        fnDate();
+    },1000)
+            function fnDate(){
+                let time = new Date()
+                let year = time.getFullYear()
+                let month = time.getMonth()+1
+                let day = time.getDate()
+                let hours= time.getHours();//小时
+                hours = hours<10?"0"+ hours:hours
+                let minute= time.getMinutes();//分
+                minute=minute<10?"0"+minute:minute;
+                $(".year").text(year+"年")
+                $(".month").text(month+"月")
+                $(".day").text(day+"日")
+                $(".hours").text(hours +" :")
+                $(".minutes").text(minute)
+
+            }
+           
+        })()
+</script>
+<script src="/static/js/amazeui.datatables.min.js"></script>
+<script src="/static/js/dataTables.responsive.min.js"></script>
+<script src="/static/js/app.js"></script>
+<!-- <script src="/static/js/modal.js"></script> -->
+</body>
+
+

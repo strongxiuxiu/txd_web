@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理</title>
+    <link rel="icon" type="image/png" href="/static/i/ZDlogoicon.jpg">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css">
+    <link rel="stylesheet" href="/static/css/x-admin.css" media="all">
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+    <link rel="stylesheet" href="/static/css/laydate.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/public.css">
+    <link rel="stylesheet" href="/static/css/new.css">
+    <link rel="stylesheet" href="/static/css/mylaws.css">
+    <link rel="stylesheet" href="/static/css/entering.css">
+    <link rel="stylesheet" href="/static/css/pagination.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2431045_hbwl3x53oep.css">
+    <link rel="stylesheet" href="/static/css/create_times.css">
+    <link rel="stylesheet" href="/static/css/upload.css">
+    <link rel="stylesheet" href="/static/css/product_list.css">
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+</head>
+<style>
+    .show_list {
+        display: block;
+    }
+
+    .hide_lits {
+        display: none;
+    }
+    .wrap {
+        line-height: 40px;
+        height: 40px;
+        border: 1px solid #dcdfe6;
+        width: 300px;
+        /* margin: 40px auto 0; */
+        display: flex;
+        transition: border-color .2s;
+        border-radius: 4px;
+    }
+
+        .wrap:hover {
+            border-color: #c0c4cc;
+        }
+
+        .wrap:active {
+            border-color: #66b1ff;
+        }
+
+        .wrap.active {
+            border-color: #66b1ff;
+        }
+
+        .wrap > div {
+            flex: 1;
+            padding: 0 10px;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .wrap .ali-iconfont {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+    .wrap-l-starTime, .wrap-l-endTime {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrap [name="startTime"], .wrap [name="endTime"] {
+        flex: 1;
+        width: 100%;
+    }
+
+        .wrap [name="startTime"], .wrap [name="endTime"], .wrap [name="startTime"]:focus, .wrap [name="endTime"]:focus {
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+</style>
+<body>
+{% include 'hash.html' %}
+
+<!-- 主题盒子 -->
+<div class="tpl-content-wrapper">
+
+    
+
+    <div class="row-content am-cf case_cart">
+
+          <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 head_content">
+              <i class="am-icon-arrow-left sidebar-nav-link-logo black" style="font-size: 18px;"></i>
+              <i class="am-icon-tag sidebar-nav-link-logo" style="font-size: 18px;"></i>商品列表
+          </div>
+        <div class="row object_cart">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget content am-cf">
+                    <div class="widget-body  am-fr">
+                         <div class="widget am-cf">
+                            <div class="head_state">
+                              <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg search_wapper">
+                                <div class="widget am-cf widget-body-lg">
+                                    <div class="widget-body  am-fr">
+                                        <div class="main_search">
+                                          <div class="search_item">
+                                            <div class="wrap">
+                                              创建时间:
+                                              <div class="wrap-l">
+                                        
+                                                  <div class="wrap-l-starTime">
+                                                      <input name="startTime" class="start_time"  style="font-size: 12px;" type="text" placeholder="开始日期">
+                                                  </div>
+                                      
+                                              </div>
+                                              <div class="wrap-r">
+                                        
+                                                  <div class="wrap-l-endTime">
+                                                      <input name="endTime" class="end_time"  style="font-size: 12px;" type="text" placeholder="结束日期">
+                                                  </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="search_item">
+                                            部门/团队：<input type="text" class="team">
+
+                                          </div>
+                                          <div class="search_item">
+                                            姓名：<input type="text"  class="name">
+
+                                          </div>
+                                          <div class="search_item">
+                                            <button class="btn btn-success seatch_submit" type="button" data-toggle="collapse">
+                                              查询
+                                            </button>
+                                            <button class="btn btn-danger clear" type="button" data-toggle="collapse">
+                                              重置
+                                              </button>
+                                            <button class="index_open" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                              <div class="zhan">展开<img src="/static/img/index_down.png" alt=""></div>
+                                              <div class="shou">收起 <img src="/static/img/index_up.png" alt=""></div>
+                                            </button>
+                                          </div>
+                                      
+                                        </div>
+                                        <div class="collapse" id="collapseExample">
+                                          <div class="main_search">
+                                            <div class="search_item">
+                                              业务类型: <select class="business_type_search">
+                                                <option value="0">请选择</option>
+                                                <option value="1">司法拍卖</option>
+                                                <option value="2">破产清算</option>
+                                                <option value="3">其他</option>
+                                              </select>
+                                          </div>
+                                            <div class="search_item" style="margin-left:35px;">
+                                              资产类型: <select class="property_type_search">
+                                                <option value="0">请选择</option>
+                                                <option value="1" data-name="破产清算">住宅用房</option>
+                                                <option value="2" data-name="破产清算">商业用房</option>
+                                                <option value="3" data-name="破产清算">工业用房</option>
+                                                <option value="4" data-name="破产清算">其他用房</option>
+                                                <option value="5" data-name="破产清算">机动车</option>
+                                                <option value="6" data-name="破产清算">其他交通</option>
+                                                <option value="7" data-name="破产清算">股权</option>
+                                                <option value="8" data-name="破产清算">土地</option>
+                                                <option value="9" data-name="破产清算">机器设备</option>
+                                                <option value="10" data-name="破产清算">其他</option>
+
+                                              </select>
+                                          </div>
+                                          <div class="search_item">
+                                            资产规模: <select class="estimated_price_search">
+                                              <option value="0">请选择</option>
+                                              <option value="1">100万以下</option>
+                                              <option value="2">100-1000万</option>
+                                              <option value="3">1000万以上</option>
+
+                                            </select>
+      
+                                          </div>
+                                          <div class="search_item">
+                                            拍卖阶段: <select class="auction_state">
+                                              <option value="0">请选择</option>
+                                              <option value="1">一拍</option>
+                                              <option value="2">二拍</option>
+                                              <option value="3">变卖</option>
+                                              <option value="4">其他</option>
+                                            </select>
+                                            
+                                          
+                                          </div>
+                                          <div class="search_item">
+                                            拍卖平台: <select class="auction_platform">
+                                              <option value="0">请选择</option>
+                                              <option value="1">淘宝网</option>
+                                              <option value="2">京东网</option>
+                                              <option value="3">中拍网</option>
+                                              <option value="4">诉讼资产网</option>
+                                              <option value="5">工行融e购</option>
+                                              <option value="6">北交所</option>
+                                            </select>
+                                            
+                                          </div>
+                                          </div>
+                                        
+                                          
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                              </div> 
+                            </div>
+                         </div> 
+                         <div class="widget am-cf">
+                          <div class="head_state">
+                            <div class="am-u-sm-12 am-u-md-2 am-u-lg-3">
+                              <div class="am-form-group">
+                                  <div class="am-btn-toolbar">
+                                      <div class="am-btn-group am-btn-group-xs casebtns">
+                                        <button class="btn btn-danger add_product" type="button" data-toggle="collapse">
+                                            添加商品
+                                        </button>
+                                        <!-- <button class="btn btn-danger delete_product" type="button" data-toggle="collapse">
+                                          删除商品
+                                        </button> -->
+                                        <button class="btn btn-danger count_num" style="display: none;"  type="button" data-toggle="collapse">
+                                          
+                                      </button>
+                                        
+                                      </div>
+                                  </div>
+                              </div>
+                           </div>
+                            
+                              <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg">
+                                  <div class="widget am-cf widget-body-lg">
+                                      <div class="widget-body  am-fr">
+                                          <div class="am-scrollable-horizontal  list_top">
+                                              <table width="100%"
+                                                    class="am-table am-table-compact am-text-nowrap tpl-table-black "
+                                                    id="example-r">
+                                                  <thead>
+                                                  <tr>
+                                                      <th>
+                                                          <input type="checkbox" class="al-choose" name="al-choose">
+                                                      </th>
+                                                      <th class="id_th" style="display: none;">商品id</th>
+                                                      <th>商品编号</th>
+                                                      <!-- <th>
+                                                          <span class="c_span">
+                                                            <div class="c_time_up"> 创建时间 <b class="c_time_up_icon">↓</b></div>
+                                                            <div class="c_time_down"> 创建时间 <b class="c_time_down_icon"> ↑</b></div>   
+                                                          </span>
+
+                                                      </th> -->
+                                                      <!-- <th>
+                                                          <span class="c_span">
+                                                            <div class="u_time_up" >最后修改时间 <b class="u_time_up_cion">↓</b></div>
+                                                            <div class="u_time_down">最后修改时间 <b class="u_time_down_cion">↑</b></div>   
+                                                            </span>
+                                                      </th> -->
+                                                      <th>商品名称</th>
+                                                      <th>商品地址</th>
+                                                      <th>商品生产周期</th>
+                                                      <th>商品负责人</th>
+                                                      <th>商品类型</th>
+                                                      <th>商品状态</th>
+                                                      <th>操作</th>
+                                                   
+
+                                                    
+<!--                                            
+                                                      <th>商品内容</th>
+                                                      <th>商品描述</th> -->
+                                                      
+                                                   
+                                                    
+                                                 
+                                                    
+                                                  </tr>
+                                                  </thead>
+                                                  <tbody class="tbContent object_tbody">
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                          <div class="am-fl">
+                                              <div id="pages">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+         <!-- 模态框 -->
+         <div class="modal fade" id="productadd" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <hs5class="modal-title" id="myModalLabel">
+                          添加商品信息
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <form class="am-form tpl-form-border-form tpl-form-border-br">
+                          <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">商品编号 <span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input product_number" id="user-name" placeholder="请输入商品编号">
+                            </div>
+                         </div>
+                  
+                          <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">商品类型<span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                              <select name="" id="" class="product_type">
+                                <option value="-1">请选择</option>
+                                <option value="0">VPX系统</option>
+                                <option value="1">解决方案</option>
+                                    
+                              </select>
+                            </div>
+                          </div>
+                          <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">商品状态<span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                              <select name="" id="" class="product_state">
+                                <option value="-1">请选择</option>
+                                <option value="0">在售</option>
+                                <option value="1">已下架</option>
+                                <option value="2">停产</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">商品名称 <span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input product_name" id="user-name" placeholder="请输入商品名称">
+                            </div>
+                         </div>
+                         <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">商品地址 <span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input product_address" id="user-name" placeholder="请输入商品地址">
+                          </div>
+                         </div>
+                         <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">商品内容 <span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input product_body" id="user-name" placeholder="请输入商品内容">
+                          </div>
+                          </div>
+                          <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">商品描述 <span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                                <textarea type="text" class="tpl-form-input product_describe" id="user-name" placeholder="请输入商品描述"></textarea>
+                            </div>
+                         </div>
+                          <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">商品负责人 <span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="text" class="tpl-form-input product_owner" id="user-name" placeholder="请输入商品负责人">
+                          </div>
+                          </div>
+                          <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">商品生产周期<span class="tpl-form-line-small-title">*</span></label>
+                            <div class="am-u-sm-9">
+                              <select name="" id="" class="production_cycle">
+                                <option value="-1">请选择</option>
+                                <option value="0">10天交付</option>
+                                <option value="1">30天交付</option>
+                                <option value="2">45天交付</option>
+                                <option value="3">60天交付</option>
+                                <option value="4">90天交付</option>
+                                <option value="5">半年以上</option>
+
+                                    
+                              </select>
+                            </div>
+                          </div>
+                       
+                     
+                        <!-- 商品图片 -->
+                        <div class="am-form-group">
+                          <label for="user-weibo" class="am-u-sm-3 am-form-label">商品介绍图片 <span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                            <input type="file" class="pictures_show_file" multiple>
+                            <!-- <div id="uploadImgs" style="margin-bottom: 20px;">
+                              <label for="fileUpIpt" id="labelId">
+                                  <div class="uploadImgs-add">+</div>
+                              </label>
+                              <div class="type-file-div">
+                                  <input type="file" class="input-file" name="luTest[]" style="display: none;">
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                        <!-- 详细信息图片 -->
+                        <div class="am-form-group">
+                          <label for="user-weibo" class="am-u-sm-3 am-form-label">商品介绍图片 <span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-9">
+                              <input type="file" class="more_pictures_file" multiple>
+                            <!-- <div id="uploadImgs" style="margin-bottom: 20px;">
+                              <label for="fileUpIpt" id="labelId_more">
+                                  <div class="uploadImgs_more">+</div>
+                              </label>
+                              <div class="type-file-div">
+                                  <input type="file" class="input-file" name="luTest[]" style="display: none;">
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="am-form-group">
+                          <label for="user-name" class="am-u-sm-3 am-form-label">百度网盘地址 <span class="tpl-form-line-small-title">*</span></label>
+                          <div class="am-u-sm-6">
+                              <input type="text" class="tpl-form-input Baidu_web_disk_address" id="user-name" placeholder="网盘地址">
+                          </div>
+                            <div class="am-u-sm-3">
+                                <input type="text" class="tpl-form-input verification_code" id="user-name" placeholder="请输入网盘提取码">
+                            </div>
+                            <label for="user-name" class="am-u-sm-3 am-form-label">网盘提取码 <span class="tpl-form-line-small-title">*</span></label>
+                        </div>
+                      
+
+                      </form>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary modal-btn-true addTrue">
+                           确定
+                        </button>
+                        <button type="button" class="btn btn-default modal-btn-close" data-dismiss="modal" style="margin-right:100px;">取消
+                        </button>
+                    </div>
+                </div>
+            </div>
+          </div>    
+</div>
+<script src="/static/js/axios.min.js"></script>
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<script src="/static/js/amazeui.datatables.min.js"></script>
+<script src="/static/js/dataTables.responsive.min.js"></script>
+<script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/method.js"></script>
+<script src="/static/js/citydata.js"></script>
+<script src="/static/js/md5.pro.js"></script>
+<script src="/static/js/md5.js"></script>
+<script src="/static/js/public.js"></script>
+<script src="/static/js/query.js"></script>
+<script src="/static/js/pagination.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/js/jquery-datePicker.min.js" ></script>
+
+
+<script type="text/javascript">
+           layui.use(['laydate', 'element', 'laypage', 'layer'], function () {
+                $ = layui.jquery;//jquery
+                // laydate = layui.laydate;//日期插件
+                // lement = layui.element();//面包导航
+                laypage = layui.laypage;//分页
+                layer = layui.layer;//弹出层
+                //以上模块根据需要引入
+            });
+</script>
+
+<script src="/static/js/function.js"></script>
+<script src="/static/js/product_list.js"></script>
+<!-- <script src="/static/js/modal.js"></script> -->
+<script src="/static/js/upload.js"></script>
+<script src="/static/js/add_projuct.js"></script>
+</body>
+</html>

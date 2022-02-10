@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>中鼎元品后台管理系统</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="icon" type="image/png" href="/static/i/ZDlogoicon.jpg">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css">
+  <link rel="stylesheet" href="/static/css/x-admin.css" media="all">
+  <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="stylesheet" href="/static/css/public.css">
+  <!-- <link rel="stylesheet" href="/static/css/entering.css"> -->
+  <link rel="stylesheet" href="/static/css/new.css">
+  <link rel="stylesheet" href="/static/css/mylaws.css">
+  <link rel="stylesheet" href="/static/css/entering.css">
+  <!-- <link rel="stylesheet" href="/static/css/upload.css"> -->
+  <link rel="stylesheet" href="/static/css/pagination.css">
+  <link rel="stylesheet" href="/static/css/index.css">
+ 
+  <!-- <link rel="stylesheet" href="/static/css/index2.css">
+  <link rel="stylesheet" href="/static/css/index.css"> -->
+  <script src="/static/js/jquery-1.12.4.min.js"></script>
+</head>
+<style>
+  .show_list{display: block;}
+  .hide_lits{display: none;}
+</style>
+<body>
+  {% include 'hash.html' %}
+  <div class="tpl-content-wrapper">
+   
+    <div class="row-content am-cf">
+    <!-- <div class="row  am-cf head_title" style="margin-bottom: 5%;"> -->
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 head_content">
+          <i  style="margin-left: 10px;"  class="am-icon-home sidebar-nav-link-logo"></i> 首页
+        </div>
+      <!-- </div> -->
+      <div class="widget am-cf  content_main">
+        <div class="widget-body  am-fr">
+              <div class="am-u-sm-2 am-u-md-3 am-u-lg-4" >
+                <div class="am-form-group tpl-table-list-select" >
+                    <select data-am-selected="{btnSize: 'sm'}" class="search_type search_index">
+                        <option value="0">全部</option>
+                        <option value="1">案件</option>
+                        <option value="2">标的</option>
+                        <option value="3">文件</option>
+                    </select>
+                </div>
+              </div>
+              <div class="am-u-sm-10 am-u-md-4 am-u-lg-5" >
+                  <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p" >
+                      <input type="text" class="search_input input_shou">
+                        <span class="am-input-group-btn">
+                          <button  id="search_shou" class="am-btn  am-btn-default am-btn-primary tpl-list-field am-icon-search search_btn" type="button"></button>
+                          <button  id="clear_shou" class="am-btn am-btn-default am-btn-primary tpl-list-field  clear_btn" type="button">清空</button>
+                        </span>
+                </div>
+              </div>
+              <div class="row  am-cf mokuai">
+                      <!-- <div class="am-u-sm-12 am-u-md-3 am-u-lg-3 case_join"> -->
+                          <div class="widget widget-primary am-cf case_join">
+                              <div class="widget-statistic-body">
+                                  <div class="widget-statistic-value">
+                                    <svg t="1625555379844" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8422" width="128" height="128">
+                                      <path d="M358.166 554.625c-0.533 0.68-1.066 1.391-1.304 2.251l-41.104 150.7c-2.4 8.773 0.06 18.226 6.55 24.893 4.86 4.742 11.262 
+                                      7.35 18.078 7.35 2.252 0 4.505-0.266 6.727-0.86l149.631-40.808c0.238 0 0.357 0.207 0.534 0.207 1.718 0 3.409-0.622 4.684-1.928l400.114-400.054c11.883-11.898
+                                      18.404-28.11 18.404-45.743 0-19.989-8.476-39.963-23.324-54.767l-37.787-37.845c-14.816-14.848-34.822-23.339-54.797-23.339-17.632 0-33.843 6.521-45.758 
+                                      8.39l-400.056 400.16c-0.413 0.384-0.295 0.948-0.592 1.393m504.759-297.427l-39.742 39.713-64.429-65.451 39.18-39.18c6.194-6.222 18.195-5.318 
+                                      25.31 1.823l37.812 37.846c3.944 3.941 6.195 9.186 6.195 14.372-0.027 4.254-1.54 8.107-4.326 10.877m-433.603 303.71l288.713-288.729 
+                                      64.46 65.496-288.18 288.164-64.993-64.931zM376.718 677.97l20.864-76.58 55.656 55.658-76.52 20.922z" p-id="8423" fill="#ffffff">
+                                      </path>
+                                      <path d="M888.265 415.736c-15.145 0-27.563 12.313-27.62 27.665v372.982c0 19.56-15.886 
+                                      35.445-35.476 35.445H194.221c-19.56 0-35.505-15.884-35.505-35.445v-608.78c0-19.577 
+                                      15.945-35.476 35.505-35.476h406.367c15.232 0 27.593-12.372 27.593-27.606 
+                                      0-15.203-12.361-27.59-27.593-27.59H190.013c-47.684 0-86.493 38.778-86.493 
+                                      86.492v617.17c0 47.713 38.81 86.477 86.493 86.477h639.334c47.716 0 86.51-38.764 
+                                      86.51-86.478v-377.37c-0.063-15.173-12.448-27.486-27.592-27.486" p-id="8424" fill="#ffffff">
+                                    </path>
+                                  </svg>
+                                  </div>
+                                  <div class="widget-statistic-description">
+                                      <strong class="case_click">我的委托</strong>
+                                  </div>
+                                
+                              </div>
+                          </div>
+                      <!-- </div> -->
+                      <!-- <div class="am-u-sm-12 am-u-md-3 am-u-lg-3 search_join"> -->
+                          <div class="widget widget-blue am-cf search_join">
+                              <div class="widget-statistic-body">
+                                  <div class="widget-statistic-value">
+                                    <svg t="1625556167049" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11155" width="128" height="128"><path d="M445.257143 890.434783a445.217391 445.217391 0 1 1 445.217391-445.217392 446.065424 446.065424 0 0 1-445.217391 445.217392z m0-805.63147a360.414079 360.414079 0 1 0 360.414079 360.414078 360.838095 360.838095 0 0 0-360.414079-360.414078z" p-id="11156" fill="#ffffff"></path><path d="M975.277847 1017.639752a42.401656 42.401656 0 0 1-30.105176-12.720497l-212.008282-212.008282a42.401656 42.401656 0 1 1 59.786336-59.786335l212.008281 212.008281a42.401656 42.401656 0 0 1 0 59.786336 42.401656 42.401656 0 0 1-29.681159 12.720497z" p-id="11157" fill="#ffffff"></path></svg>
+                                  </div>
+                                  <div class="widget-statistic-description">
+                                      <strong class="case_click">我的检索</strong>
+                                  </div>
+                                
+                              </div>
+                          </div>
+                      <!-- </div> -->
+                      <!-- <div class="am-u-sm-12 am-u-md-3 am-u-lg-3 tongji_join"> -->
+                            <div class="widget widget-red am-cf tongji_join">
+                                <div class="widget-statistic-body">
+                                    <div class="widget-statistic-value">
+                                      <svg t="1625556237368" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12816" width="128" height="128"><path d="M1019.904 450.56L536.576 557.056l417.792 208.896C999.424 692.224 1024 606.208 1024 512c0-20.48 0-40.96-4.096-61.44z m-12.288-61.44C958.464 184.32 786.432 28.672 573.44 4.096L446.464 512l561.152-122.88zM737.28 970.752c73.728-36.864 139.264-90.112 188.416-159.744L507.904 602.112l229.376 368.64zM512 0C229.376 0 0 229.376 0 512s229.376 512 512 512c61.44 0 118.784-12.288 172.032-28.672L385.024 512 512 0z" p-id="12817" fill="#ffffff"></path></svg>
+                                    </div>
+                                    <div class="widget-statistic-description">
+                                        <strong class="case_click">我的统计</strong>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                      <!-- </div> -->
+                      <!-- <div class="am-u-sm-12 am-u-md-3 am-u-lg-3 user_join"> -->
+                        <div class="widget widget-purple  am-cf user_join">
+                            <div class="widget-statistic-body">
+                                <div class="widget-statistic-value">
+                                  <svg t="1625556348059" class="icon" viewBox="0 0 1032 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13779" width="128" height="128"><path d="M494.870476 507.635572c160.939766 0 291.404485-111.604041 291.404485-249.237064 0-137.664224-130.464718-249.229265-291.404485-249.229265-160.924166 0-291.412285 111.56504-291.396684 249.229265 0 137.633024 130.472518 249.237065 291.404485 249.237064zM628.455241 590.737994H385.59087c-207.888657 0-376.433535 144.122719-376.433535 321.910733v20.779506c0 72.665868 168.544878 72.736069 376.433535 72.736069H628.455241c207.865256 0 376.402334-2.683239 376.402334-72.736069v-20.771705c0-177.795814-168.521478-321.918533-376.402334-321.918534z" p-id="13780" fill="#ffffff"></path></svg>
+                                </div>
+                                <div class="widget-statistic-description">
+                                    <strong class="case_click">我的账户</strong>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="widget widget-purple  am-cf">
+                          <div class="widget-statistic-body">
+                              <div class="widget-statistic-value">
+                                <svg t="1626423827298" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1994" width="128" height="128"><path d="M512 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512z m0-960a448 448 0 1 0 448 448A448 448 0 0 0 512 64z m32 672h-64v-192H288v-64h192V288h64v192h192v64h-192v192z" p-id="1995" fill="#ffffff"></path></svg>                              </div>
+                              <div class="widget-statistic-description">
+                                  <strong class="mokuai_add">点击添加</strong>
+                              </div>
+                          </div>
+                          
+                      </div>
+                    <!-- </div> -->
+                 
+
+
+            
+              </div>
+              <div class="row am-cf case_main" style="margin:3% auto;">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg">
+                  <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">案件信息</div>
+                    <span class="csae_count"></span>
+                 </div>
+                <div class="widget am-cf widget-body-lg">
+                    <div class="widget-body  am-fr">
+                        <div class="am-scrollable-horizontal ">
+                            <table width="100%"  class=" am-table am-table-compact am-text-nowrap tpl-table-black "
+                                   id="example-r">
+                                <thead>
+                                <tr>
+                                    <th class="case_id" style="display: none;">uuid</th>
+                                    <th>创建时间</th>
+                                    <th>最后修改时间</th>
+                                    <th>执行案号</th>
+                                    <th>法院名称</th>
+                                    <th>申请人</th>
+                                    <th>被执行人</th>
+                                    <th>承办人</th>
+                                    <th>标的数量</th>
+                                    <th>案件状态</th>
+                                    <th>项目负责人</th>
+                                    <th>档案编号</th>
+                                </tr>
+                                </thead>
+                                <tbody class="tbContent case_tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="am-fl">
+                            <div id="pages">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+              </div>
+              <div class="row am-cf object_main" style="margin:3% auto;">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg">
+                  <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">标的信息</div>
+                    <span class="object_count"></span>
+                 </div>
+                <div class="widget am-cf widget-body-lg">
+                    <div class="widget-body  am-fr">
+                        <div class="am-scrollable-horizontal ">
+                            <table width="100%"  class=" am-table am-table-compact am-text-nowrap tpl-table-black "
+                                   id="example-r">
+                                <thead>
+                                <tr>
+                                    <th class="object_id" style="display: none;">uuid</th>
+                                    <th>创建时间</th>
+                                    <th>最后修改时间</th>
+                                    <th>标的名称</th>
+                                    <th>所在地</th>
+                                    <th>财产类型</th>
+                                    <th>预估价格</th>
+                                    <th>评估状态</th>
+                                    <th>评估价格</th>
+                                    <th>拍卖状态</th>
+                                    <th>成交价</th>
+                                    <th>交割状态</th>
+                                    <th>买受人</th>
+                                    <th>收费状态</th>
+                                    <th>已收服务费</th>
+                                    <th>开票状态</th>
+                                    <th>开票金额</th>
+                                </tr>
+                                </thead>
+                                <tbody class="tbContent object_tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="am-fl">
+                            <div id="object_pages">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+              </div>
+              <div class="row am-cf file_main" style="margin:3% auto;">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 widget-margin-bottom-lg">
+                  <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">文件信息</div>
+                    <span class="file_count"></span>
+                 </div>
+                <div class="widget am-cf widget-body-lg">
+                    <div class="widget-body  am-fr">
+                        <div class="am-scrollable-horizontal ">
+                          <table width="100%"
+                                               class="am-table am-table-compact am-text-nowrap tpl-table-black "
+                                               id="example-r">
+                                            <thead>
+                                            <tr>
+                                                <th class="file_id" style="display: none;">uuid</th>
+                                                <th>上传时间</th>
+                                                <th>文件属性</th>
+                                                <th>文件名称</th>
+                                                <th>上传者</th>           
+                                            </tr>
+                                            </thead>
+                                            <tbody class="tbContent file_tobody">
+                                            </tbody>
+                                        </table>
+                        </div>
+                        <div class="am-fl">
+                            <div id="file_pages">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+              </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+<script src="/static/js/axios.min.js"></script>
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<script src="/static/js/function.js"></script>
+<script src="/static/js/amazeui.datatables.min.js"></script>
+<script src="/static/js/dataTables.responsive.min.js"></script>
+<script src="/static/lib/layui/layui.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/x-admin.js"></script>
+<script src="/static/js/method.js"></script>
+<script src="/static/js/citydata.js"></script>
+<script src="/static/js/md5.pro.js"></script>
+<script src="/static/js/md5.js"></script>
+<script src="/static/js/public.js"></script>
+<script src="/static/js/query.js"></script>
+<script src="/static/js/pagination.js"></script>
+
+<script>
+  //layui配置 引入模块
+  let  user_grader = localStorage.getItem("user_grader")
+      if(user_grader == 1){
+        $(".search_join").css({
+          display:"none"
+        })
+        // $(".tongji_join").css({
+        //   display:"none"
+        // })
+        }
+
+  layui.use(['laydate','element','laypage','layer'], function(){
+        $ = layui.jquery;//jquery
+        // laydate = layui.laydate;//日期插件
+        lement = layui.element();//面包导航
+        laypage = layui.laypage;//分页
+        layer = layui.layer;//弹出层
+        //以上模块根据需要引入
+    });
+    
+</script>
+<script src="/static/js/index.js"></script>
+<script src="/static/js/modal.js"></script>
+<!-- <script src="/static/js/modal.js"></script> -->
+</body>
+</html>

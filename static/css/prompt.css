@@ -1,0 +1,56 @@
+
+body{
+	background-color: #3a3940;
+	width:100%;
+	height: 100%;
+	text-align: center;
+}
+#fof{
+	width: 1100px;
+}
+.fof_content{
+	display: inline-block;
+	vertical-align:top;
+	margin-top: 20%;
+	min-width:300px;
+	text-align: center;
+	position: relative;
+}
+#fof{
+	min-width: 1000px;
+	margin:0 auto;
+}
+.fof_l,.fof_r{
+	display: inline-block;
+	color:#fff;
+	font-family:'Constantia';
+	font-size: 80pt;
+	vertical-align: bottom;
+}
+#indicatorContainer1{
+	display: inline-block;
+	margin: 0px 20px;
+}
+.btn_f5,.btn_back{
+		margin-top:30%;
+		margin-left: 5px;
+		margin-right: 5px;
+}
+.fof_txt{
+	margin-top:10%;
+	color:#fff;
+	font-size: 12pt
+}
+.txt_En{
+	color:#fff;
+	font-size: 10pt;
+}
+.fof_right{
+	font-size: 100pt;
+	position: absolute;
+	top:-6px;
+	right: 10px;
+}
+.indicatorContainer{
+	margin-right: 71px !important;
+}
