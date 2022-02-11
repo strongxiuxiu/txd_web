@@ -1,7 +1,8 @@
 import datetime
 import json
-print(123)
 
+print(123)
+print(123123)
 from django.shortcuts import render
 from .models import Product
 from django.http import JsonResponse, HttpResponse
